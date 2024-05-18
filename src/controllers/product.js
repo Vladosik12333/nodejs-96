@@ -1,4 +1,3 @@
-import httpError from "../helpers/httpError.js";
 import services from "../services/product.js";
 
 const getAll = async (req, res) => {
@@ -20,4 +19,10 @@ const deleteById = async (req, res) => {
   const product = await services.deleteById(req.params.id);
   res.json({ product });
 };
-export default { getAll, create, getById, deleteById };
+
+const updateById = async (req, res) => {
+  const product = await services.updateById(req.params.id, req.body);
+  res.json({ product });
+};
+
+export default { getAll, create, getById, deleteById, updateById };

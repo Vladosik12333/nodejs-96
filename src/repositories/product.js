@@ -19,4 +19,10 @@ const deleteById = async (id) => {
   const product = await Product.findByIdAndDelete(id);
   return product;
 };
-export default { create, getAll, getById, deleteById };
+
+const updateById = async (id, body) => {
+  const product = await Product.findByIdAndUpdate(id, body, { new: true });
+  return product;
+};
+
+export default { create, getAll, getById, deleteById, updateById };

@@ -24,4 +24,11 @@ const deleteById = async (id) => {
   if (!product) throw httpError(404, "Product not found");
   return product;
 };
-export default { create, getAll, getById, deleteById };
+
+const updateById = async (id, body) => {
+  const product = await repositories.updateById(id, body);
+  if (!product) throw httpError(404, "Product not found");
+  return product;
+};
+
+export default { create, getAll, getById, deleteById, updateById };

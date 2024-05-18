@@ -29,3 +29,10 @@ export const createProductSchema = Joi.object({
 export const producIdSchema = Joi.object({
   id: Joi.objectId().required(),
 });
+
+export const updateProductSchema = Joi.object({
+  name: Joi.string(),
+  price: Joi.number(),
+  inStock: Joi.boolean(),
+  popular: Joi.boolean(),
+}).min(1);
