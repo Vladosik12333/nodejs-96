@@ -1,6 +1,6 @@
-const wrapper = (controller) => (req, res, next) => {
+const wrapper = (controller) => async (req, res, next) => {
   try {
-    controller(req, res);
+    await controller(req, res);
   } catch (error) {
     next(error);
   }

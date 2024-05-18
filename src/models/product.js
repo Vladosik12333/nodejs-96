@@ -1,5 +1,9 @@
 import Joi from "joi";
+import objectId from "joi-objectid";
+
 import mongoose from "mongoose";
+
+Joi.objectId = objectId(Joi);
 
 const productSchema = new mongoose.Schema(
   {
@@ -20,4 +24,8 @@ export const createProductSchema = Joi.object({
   price: Joi.number().required(),
   inStock: Joi.boolean().default(true),
   popular: Joi.boolean().default(false),
+});
+
+export const producIdSchema = Joi.object({
+  id: Joi.objectId().required(),
 });

@@ -1,5 +1,5 @@
-import httpError from '../helpers/httpError.js';
-import services from '../services/product.js';
+import httpError from "../helpers/httpError.js";
+import services from "../services/product.js";
 
 const getAll = async (req, res) => {
   const allProducts = await services.getAll();
@@ -11,4 +11,13 @@ const create = async (req, res) => {
   res.json({ product });
 };
 
-export default { getAll, create };
+const getById = async (req, res) => {
+  const product = await services.getById(req.params.id);
+  res.json({ product });
+};
+
+const deleteById = async (req, res) => {
+  const product = await services.deleteById(req.params.id);
+  res.json({ product });
+};
+export default { getAll, create, getById, deleteById };
