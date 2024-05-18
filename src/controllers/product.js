@@ -1,12 +1,14 @@
-import httpError from "../helpers/httpError.js";
+import httpError from '../helpers/httpError.js';
+import services from '../services/product.js';
 
-const getAll = (req, res) => {
-  throw httpError(402, "Error 1");
-  res.json("Hello Back-end!").status(230);
+const getAll = async (req, res) => {
+  const allProducts = await services.getAll();
+  res.json({ allProducts });
 };
 
-const create = (req, res) => {
-  res.json("I created product");
+const create = async (req, res) => {
+  const product = await services.create(req.body);
+  res.json({ product });
 };
 
 export default { getAll, create };
