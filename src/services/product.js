@@ -8,20 +8,34 @@ const create = async (body) => {
 
 const getAll = async (query) => {
   const filters = {};
+  const sorting = {};
 
-  for (const filterKey in query) {
-    const filterValue = query[filterKey];
-    if (filterKey === "name") {
-      const filterName = {
-        $regex: query[filterKey],
-        $options: "i",
-      };
-      filters[filterKey] = filterName;
-    } else {
-      filters[filterKey] = filterValue;
+  for (const queryKey in query) {
+    const queryValue = query[queryKey];
+
+    switch (queryKey) {
+      case "sortBy":
+        sorting[queryValue] = query.orderBy ? 1 : -1;
+        break;
+
+      case "orderBy":
+        break;
+
+      case "name":
+        const filterName = {
+          $regex: queryValue,
+          $options: "i",
+        };
+        filters[queryKey] = filterName;
+        break;
+
+      default:
+        filters[queryKey] = queryValue;
+        break;
     }
   }
-  const allProducts = await repositories.getAll(filters);
+
+  const allProducts = await repositories.getAll(filters, sorting);
   return allProducts;
 };
 

@@ -1,7 +1,7 @@
-import Joi from 'joi';
-import objectId from 'joi-objectid';
+import Joi from "joi";
+import objectId from "joi-objectid";
 
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 Joi.objectId = objectId(Joi);
 
@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('product', productSchema);
+export default mongoose.model("product", productSchema);
 
 export const createProductSchema = Joi.object({
   name: Joi.string().required(),
@@ -44,6 +44,14 @@ export const filtersProductSchema = Joi.object({
 });
 
 export const sortingProductSchema = Joi.object({
-  sortBy: Joi.string().valid('name', 'price', 'inStock', 'popular'),
-  orderBy: Joi.boolean(),
+  sortBy: Joi.string().valid("name", "price", "inStock", "popular"),
+  orderBy: Joi.boolean().default(true),
+});
+
+export const filtersAndSortingSchema = Joi.object({
+  name: Joi.string(),
+  inStock: Joi.boolean(),
+  popular: Joi.boolean(),
+  sortBy: Joi.string().valid("name", "price", "inStock", "popular"),
+  orderBy: Joi.boolean().default(true),
 });

@@ -1,7 +1,6 @@
 import { PORT, DB_URI } from "./src/config.js";
 import app from "./src/app.js";
 import mongoose from "mongoose";
-console.log(1);
 mongoose
   .connect(DB_URI)
   .then(() => {
