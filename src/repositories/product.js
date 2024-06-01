@@ -5,8 +5,8 @@ const create = async (body) => {
   return product;
 };
 
-const getAll = async () => {
-  const allProducts = await Product.find();
+const getAll = async (filters) => {
+  const allProducts = await Product.find(filters);
   return allProducts;
 };
 

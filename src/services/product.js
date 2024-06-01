@@ -6,8 +6,22 @@ const create = async (body) => {
   return product;
 };
 
-const getAll = async () => {
-  const allProducts = await repositories.getAll();
+const getAll = async (query) => {
+  const filters = {};
+
+  for (const filterKey in query) {
+    const filterValue = query[filterKey];
+    if (filterKey === "name") {
+      const filterName = {
+        $regex: query[filterKey],
+        $options: "i",
+      };
+      filters[filterKey] = filterName;
+    } else {
+      filters[filterKey] = filterValue;
+    }
+  }
+  const allProducts = await repositories.getAll(filters);
   return allProducts;
 };
 

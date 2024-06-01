@@ -36,3 +36,9 @@ export const updateProductSchema = Joi.object({
   inStock: Joi.boolean(),
   popular: Joi.boolean(),
 }).min(1);
+
+export const filtersProductSchema = Joi.object({
+  name: Joi.string(),
+  inStock: Joi.boolean(),
+  popular: Joi.boolean(),
+});

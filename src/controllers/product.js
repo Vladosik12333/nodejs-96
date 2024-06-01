@@ -1,7 +1,7 @@
 import services from "../services/product.js";
 
 const getAll = async (req, res) => {
-  const allProducts = await services.getAll();
+  const allProducts = await services.getAll(req.query);
   res.json({ allProducts });
 };
 

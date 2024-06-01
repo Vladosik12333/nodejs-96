@@ -6,11 +6,16 @@ import {
   createProductSchema,
   producIdSchema,
   updateProductSchema,
+  filtersProductSchema,
 } from "../models/product.js";
 
 const route = express.Router();
 
-route.get("/", wrapper(controllers.getAll));
+route.get(
+  "/",
+  validator.query(filtersProductSchema),
+  wrapper(controllers.getAll)
+);
 
 route.post(
   "/",
